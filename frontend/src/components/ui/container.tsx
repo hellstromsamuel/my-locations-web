@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const containerVariants = cva(
-  "p-4 rounded-lg border bg-white dark:bg-gray-900 space-y-4",
+  "p-4 rounded-lg bg-white dark:bg-gray-900 space-y-4",
   {
     variants: {
       variant: {},
