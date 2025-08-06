@@ -14,7 +14,10 @@ function Header({ className }: Props) {
       )}
     >
       <h1 className="font-semibold text-xl">My locations</h1>
-      <ThemeToggleButtons />
+
+      <div className="border rounded-xl p-0.5">
+        <ThemeToggleButtons size="sm" />
+      </div>
     </div>
   );
 }
