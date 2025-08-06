@@ -26,6 +26,7 @@ function ThemeToggleButtons({ size = "default" }: Props) {
     <div className="flex gap-1 rounded-xl p-1">
       {themeOptions.map((option) => (
         <Button
+          key={option.value}
           size={size}
           variant={option.value === theme ? "secondary" : "ghost"}
           onClick={() => setTheme(option.value)}
