@@ -1,6 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import z from "zod";
+import useAddLocation from "./useAddLocation";
 
 const formSchema = z.object({
   name: z
@@ -9,7 +10,6 @@ const formSchema = z.object({
     .max(100, { message: "Name must be less than 100 characters" }),
   description: z
     .string()
-    .nonempty({ message: "Description is required" })
     .max(500, { message: "Description must be less than 500 characters" }),
   coordinates: z.object({
     latitude: z
@@ -26,6 +26,8 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 function useAddLocationForm() {
+  const { mutate } = useAddLocation();
+
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -42,6 +44,7 @@ function useAddLocationForm() {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
+    mutate(values);
   }
 
   return { form, onSubmit };
