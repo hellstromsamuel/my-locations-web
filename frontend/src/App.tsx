@@ -12,10 +12,17 @@ function App() {
     >
       <Header />
 
-      <main className="flex flex-col px-4 py-8 ">
-        <Container className="w-full max-w-96">
-          <AddLocationForm />
-        </Container>
+      <main className="flex flex-col px-4 py-8 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8">
+          <Container>
+            <h2 className="font-semibold text-lg">Add location</h2>
+            <AddLocationForm />
+          </Container>
+
+          <Container>
+            <h2 className="font-semibold text-lg">Saved locations</h2>
+          </Container>
+        </div>
       </main>
     </div>
   );
