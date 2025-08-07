@@ -11,15 +11,16 @@ import { useState } from "react";
 function LocationCard({ location }: { location: Location }) {
   const [dialogOpen, setDialogOpen] = useState(false);
   const { mutate: deleteLocation } = useDeleteLocation();
-  const { mutate: saveLocation } = useSaveLocation();
+  const { mutateAsync: saveLocation } = useSaveLocation();
 
-  function copyLocation() {
+  async function copyLocation() {
     const locationData: Location = {
       ...location,
       id: generateUUID(),
       name: location.name + " - copy",
     };
-    saveLocation(locationData);
+
+    await saveLocation(locationData);
   }
 
   return (
@@ -28,7 +29,12 @@ function LocationCard({ location }: { location: Location }) {
         title="Edit Location"
         open={dialogOpen}
         setOpen={setDialogOpen}
-        children={<SaveLocationForm location={location} />}
+        children={
+          <SaveLocationForm
+            location={location}
+            afterSubmit={() => setDialogOpen(false)}
+          />
+        }
       />
 
       <div className="@container">
