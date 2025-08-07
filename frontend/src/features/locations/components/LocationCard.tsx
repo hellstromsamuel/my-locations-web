@@ -27,6 +27,7 @@ function LocationCard({ location }: { location: Location }) {
     <>
       <DrawerDialog
         title="Edit Location"
+        description={"Modify the details of your location."}
         open={dialogOpen}
         setOpen={setDialogOpen}
         children={
