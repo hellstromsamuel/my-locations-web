@@ -1,9 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import z from "zod";
-import useAddLocation from "./useAddLocation";
+import useSaveLocation from "./useSaveLocation";
+import { generateUUID } from "../../../lib/uuid";
 
 const formSchema = z.object({
+  id: z.string(),
   name: z
     .string()
     .nonempty({ message: "Name is required" })
@@ -25,12 +27,13 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-function useAddLocationForm() {
-  const { mutate } = useAddLocation();
+function useSaveLocationForm() {
+  const { mutate } = useSaveLocation();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      id: generateUUID(),
       name: "",
       description: "",
       coordinates: {
@@ -41,13 +44,10 @@ function useAddLocationForm() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
     mutate(values);
   }
 
   return { form, onSubmit };
 }
 
-export default useAddLocationForm;
+export default useSaveLocationForm;

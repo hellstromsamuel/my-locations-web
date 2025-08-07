@@ -1,17 +1,18 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addLocation } from "../api/locationsApi";
 import { queryKeyLocations } from "./useLocations";
-import type { LocationDto } from "../types/LocationDto";
+import { putLocation } from "../api/locationsApi";
+import type { Location } from "../types/Location";
 
-function useAddLocation() {
+function useSaveLocation() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (newLocation: LocationDto) => addLocation(newLocation),
+    mutationFn: async (newLocation: Partial<Location>) =>
+      putLocation(newLocation),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeyLocations });
     },
   });
 }
 
-export default useAddLocation;
+export default useSaveLocation;
