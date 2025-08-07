@@ -28,7 +28,7 @@ function LocationCard({ location }: { location: Location }) {
         title="Edit Location"
         open={dialogOpen}
         setOpen={setDialogOpen}
-        children={<SaveLocationForm />}
+        children={<SaveLocationForm location={location} />}
       />
 
       <div className="@container">
