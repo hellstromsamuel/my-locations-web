@@ -15,10 +15,11 @@ import useSaveLocationForm, {
 
 interface Props {
   location?: SaveLocationFormValues;
+  afterSubmit?: () => void;
 }
 
-function SaveLocationForm({ location }: Props) {
-  const { form, onSubmit } = useSaveLocationForm(location);
+function SaveLocationForm({ location, afterSubmit }: Props) {
+  const { form, onSubmit } = useSaveLocationForm(location, afterSubmit);
 
   return (
     <Form {...form}>

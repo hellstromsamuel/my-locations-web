@@ -27,8 +27,11 @@ const formSchema = z.object({
 
 export type SaveLocationFormValues = z.infer<typeof formSchema>;
 
-function useSaveLocationForm(location: SaveLocationFormValues | null = null) {
-  const { mutate } = useSaveLocation();
+function useSaveLocationForm(
+  location?: SaveLocationFormValues,
+  afterSubmit?: () => void
+) {
+  const { mutateAsync: saveLocation } = useSaveLocation();
 
   const form = useForm<SaveLocationFormValues>({
     resolver: zodResolver(formSchema),
@@ -43,8 +46,11 @@ function useSaveLocationForm(location: SaveLocationFormValues | null = null) {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    mutate(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log("Submitting location:", values);
+
+    await saveLocation(values);
+    if (afterSubmit) afterSubmit();
   }
 
   return { form, onSubmit };
