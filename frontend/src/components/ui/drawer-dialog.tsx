@@ -22,19 +22,19 @@ import { X } from "lucide-react";
 interface Props {
   open: boolean;
   setOpen: (open: boolean) => void;
+  title: string;
+  description: string;
   children: ReactNode;
   footer?: ReactNode;
-  title: string;
-  description?: string;
 }
 
 function DrawerDialog({
   open,
   setOpen,
-  children,
-  footer,
   title,
   description,
+  children,
+  footer,
 }: Props) {
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
@@ -44,9 +44,8 @@ function DrawerDialog({
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle>{title}</DialogTitle>
-            {description && (
-              <DialogDescription>{description}</DialogDescription>
-            )}
+            <DialogDescription>{description}</DialogDescription>
+
             <DialogDescription>{description}</DialogDescription>
           </DialogHeader>
           {children}
@@ -60,11 +59,9 @@ function DrawerDialog({
       <DrawerContent>
         <DrawerHeader className="text-left">
           <DrawerTitle className="text-left">{title}</DrawerTitle>
-          {description && (
-            <DrawerDescription className="text-left">
-              {description}
-            </DrawerDescription>
-          )}
+          <DrawerDescription className="text-left">
+            {description}
+          </DrawerDescription>
 
           <DrawerClose asChild>
             <Button variant="ghost" className="absolute right-4 top-4">
