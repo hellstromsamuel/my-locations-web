@@ -25,20 +25,20 @@ const formSchema = z.object({
   }),
 });
 
-type FormValues = z.infer<typeof formSchema>;
+export type SaveLocationFormValues = z.infer<typeof formSchema>;
 
-function useSaveLocationForm() {
+function useSaveLocationForm(location: SaveLocationFormValues | null = null) {
   const { mutate } = useSaveLocation();
 
-  const form = useForm<FormValues>({
+  const form = useForm<SaveLocationFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      id: generateUUID(),
-      name: "",
-      description: "",
+      id: location?.id || generateUUID(),
+      name: location?.name || "",
+      description: location?.description || "",
       coordinates: {
-        latitude: 0,
-        longitude: 0,
+        latitude: location?.coordinates.latitude || 0,
+        longitude: location?.coordinates.longitude || 0,
       },
     },
   });

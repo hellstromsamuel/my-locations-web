@@ -9,10 +9,16 @@ import {
 } from "../../../components/ui/form";
 import { Input } from "../../../components/ui/input";
 import { Textarea } from "../../../components/ui/textarea";
-import useSaveLocationForm from "../hooks/useSaveLocationForm";
+import useSaveLocationForm, {
+  type SaveLocationFormValues,
+} from "../hooks/useSaveLocationForm";
 
-function SaveLocationForm() {
-  const { form, onSubmit } = useSaveLocationForm();
+interface Props {
+  location?: SaveLocationFormValues;
+}
+
+function SaveLocationForm({ location }: Props) {
+  const { form, onSubmit } = useSaveLocationForm(location);
 
   return (
     <Form {...form}>
