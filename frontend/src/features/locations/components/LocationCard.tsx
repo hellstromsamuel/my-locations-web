@@ -1,22 +1,22 @@
 import { Copy, Edit, Trash } from "lucide-react";
 import { Button } from "../../../components/ui/button";
 import useDeleteLocation from "../hooks/useDeleteLocation";
+import useSaveLocation from "../hooks/useSaveLocation";
 import type { Location } from "../types/Location";
-import useAddLocation from "../hooks/useAddLocation";
-import type { LocationDto } from "../types/LocationDto";
+import { generateUUID } from "../../../lib/uuid";
 
 function LocationCard({ location }: { location: Location }) {
   const { mutate: deleteLocation } = useDeleteLocation();
-  const { mutate: addLocation } = useAddLocation();
+  const { mutate: saveLocation } = useSaveLocation();
 
-  const copyLocation = () => {
-    const locationData: LocationDto = {
+  function copyLocation() {
+    const locationData: Location = {
+      ...location,
+      id: generateUUID(),
       name: location.name + " - copy",
-      description: location.description,
-      coordinates: location.coordinates,
     };
-    addLocation(locationData);
-  };
+    saveLocation(locationData);
+  }
 
   return (
     <div className="@container">
