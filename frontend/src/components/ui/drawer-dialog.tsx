@@ -12,7 +12,6 @@ import {
   DrawerClose,
   DrawerContent,
   DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
 } from "@/components/ui/drawer";
@@ -25,17 +24,9 @@ interface Props {
   title: string;
   description: string;
   children: ReactNode;
-  footer?: ReactNode;
 }
 
-function DrawerDialog({
-  open,
-  setOpen,
-  title,
-  description,
-  children,
-  footer,
-}: Props) {
+function DrawerDialog({ open, setOpen, title, description, children }: Props) {
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
   if (isDesktop) {
@@ -45,9 +36,8 @@ function DrawerDialog({
           <DialogHeader>
             <DialogTitle>{title}</DialogTitle>
             <DialogDescription>{description}</DialogDescription>
-
-            <DialogDescription>{description}</DialogDescription>
           </DialogHeader>
+
           {children}
         </DialogContent>
       </Dialog>
@@ -70,8 +60,7 @@ function DrawerDialog({
           </DrawerClose>
         </DrawerHeader>
 
-        <div className="px-4 mb-4">{children}</div>
-        {footer && <DrawerFooter className="pt-2">{footer}</DrawerFooter>}
+        {children}
       </DrawerContent>
     </Drawer>
   );
