@@ -1,5 +1,11 @@
-import type { LocationDto } from "./LocationDto";
+type Coordinates = {
+  latitude: number;
+  longitude: number;
+};
 
-export type Location = LocationDto & {
+export type Location = {
   id: string;
+  name: string;
+  description: string;
+  coordinates: Coordinates;
 };
