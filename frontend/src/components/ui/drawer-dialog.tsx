@@ -59,8 +59,12 @@ function DrawerDialog({
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerContent>
         <DrawerHeader className="text-left">
-          <DrawerTitle>{title}</DrawerTitle>
-          {description && <DrawerDescription>{description}</DrawerDescription>}
+          <DrawerTitle className="text-left">{title}</DrawerTitle>
+          {description && (
+            <DrawerDescription className="text-left">
+              {description}
+            </DrawerDescription>
+          )}
 
           <DrawerClose asChild>
             <Button variant="ghost" className="absolute right-4 top-4">
