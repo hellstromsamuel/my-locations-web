@@ -1,6 +1,6 @@
 import Header from "./components/layout/header";
 import { Container } from "./components/ui/container";
-import AddLocationForm from "./features/locations/components/AddLocationForm";
+import SaveLocationForm from "./features/locations/components/SaveLocationForm";
 import SavedLocations from "./features/locations/components/SavedLocations";
 import useLocations from "./features/locations/hooks/useLocations";
 import useTheme from "./hooks/theme/useTheme";
@@ -27,7 +27,7 @@ function App() {
 
           <Container className="h-max md:sticky md:top-4">
             <h2 className="font-semibold text-lg">Add location</h2>
-            <AddLocationForm />
+            <SaveLocationForm />
           </Container>
         </div>
       </main>
