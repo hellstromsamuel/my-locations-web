@@ -9,10 +9,10 @@ import {
 } from "../../../components/ui/form";
 import { Input } from "../../../components/ui/input";
 import { Textarea } from "../../../components/ui/textarea";
-import useAddLocationForm from "../hooks/useAddLocationForm";
+import useSaveLocationForm from "../hooks/useSaveLocationForm";
 
-function AddLocationForm() {
-  const { form, onSubmit } = useAddLocationForm();
+function SaveLocationForm() {
+  const { form, onSubmit } = useSaveLocationForm();
 
   return (
     <Form {...form}>
@@ -101,4 +101,4 @@ function AddLocationForm() {
   );
 }
 
-export default AddLocationForm;
+export default SaveLocationForm;
